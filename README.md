@@ -12,13 +12,12 @@ for your messaging, consider an Email Service Provider.
 This library exposes a `filter` method that returns a promise resolved with an array of recipient objects who match
 the given criteria.
 
-You're SparkPost API key will need `Recipient Lists: Read/Write` permissions.
+Your SparkPost API key will need `Recipient Lists: Read/Write` permissions.
 
-NOTE: Works in v4.0.0 and up.
+NOTE: Works in Node v4.0.0 and up.
 
 ```js
 let recipientFilter = require('sparkpost-recipient-filter')(process.env.SPARKPOST_API_KEY);
-
 
 recipientFilter.filter('myListId', {
   domain: 'gmail.com',
@@ -32,8 +31,6 @@ recipientFilter.filter('myListId', {
 ```
 
 ## Filtering
-
-All filters are applied with `AND` logic.
 
 If multiple criteria are passed in the filter config, the match is performed using `AND` logic.
 So if you pass both tags and domains, only recipients with the given tags and at the given domain will be returned.
