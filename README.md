@@ -1,2 +1,111 @@
 # sparkpost-recipient-filter
-Filters a SparkPost recipient list
+
+Filters a SparkPost recipient list by domains, tags, metadata and/or substitution data.
+
+## Disclaimer
+
+SparkPost is not a replacement for a marketing tool, if you need advanced subsetting of recipients
+for your messaging, consider an Email Service Provider.
+
+## Usage
+
+This library exposes a `filter` method that returns a promise resolved with an array of recipient objects who match
+the given criteria.
+
+You're SparkPost API key will need `Recipient Lists: Read/Write` permissions.
+
+NOTE: Works in v4.0.0 and up.
+
+```js
+let recipientFilter = require('sparkpost-recipient-filter')(process.env.SPARKPOST_API_KEY);
+
+
+recipientFilter.filter('myListId', {
+  domain: 'gmail.com',
+  tags: ['super', 'cool'],
+  metadata: {place: 'New York City'},
+  substitution_data: {language: 'javascript'}
+}).then(recipients => {
+  // recipients is an array of SparkPost recipient objects
+});
+
+```
+
+## Filtering
+
+All filters are applied with `AND` logic.
+
+If multiple criteria are passed in the filter config, the match is performed using `AND` logic.
+So if you pass both tags and domains, only recipients with the given tags and at the given domain will be returned.
+
+### Matching Tags
+
+If a `tags` array is passed, all recipients who have all matching tags will be returned.
+This is a strict subset match, so recipients must have all tags that are passed in the filter config
+but may have more.
+
+Example:
+
+```js
+// will find users with tags ['one', 'two'] but not ['one']
+require('sparkpost-recipient-filter')(process.env.SPARKPOST_API_KEY)
+  .filter('myListId', {tags: ['one', 'two']})
+  .then(list => console.log(list))
+  .catch(err => console.log(err));
+```
+
+### Matching Domain
+
+If a `domain` is passed, returns recipients with the given email address domain.
+
+Example:
+
+```js
+// will find users with @gmail.com email addresses
+require('sparkpost-recipient-filter')(process.env.SPARKPOST_API_KEY)
+  .filter('myListId', {domain: 'gmail.com'})
+  .then(list => console.log(list))
+  .catch(err => console.log(err));
+```
+
+### Matching Metadata
+
+Matches recipients who have the passed metadata. This is a strict subset match,
+so recipients must have all values that are passed in, but may have more.
+
+
+Example:
+
+```js
+// will find users with a place value of "NYC" AND a borough value of "Brooklyn"
+require('sparkpost-recipient-filter')(process.env.SPARKPOST_API_KEY)
+  .filter('myListId', {
+    metadata: {
+      place: 'NYC',
+      borough: 'Brooklyn'
+    }
+  })
+  .then(list => console.log(list))
+  .catch(err => console.log(err));
+```
+
+### Matching Substitution Data
+
+Matches recipients who have the passed metadata. This is a strict subset match,
+so recipients must have all values that are passed in, but may have more.
+
+
+Example:
+
+```js
+// will find users with a place value of "NYC" AND a borough value of "Brooklyn"
+require('sparkpost-recipient-filter')(process.env.SPARKPOST_API_KEY)
+  .filter('myListId', {
+    substitution_data: {
+      place: 'NYC',
+      borough: 'Brooklyn'
+    }
+  })
+  .then(list => console.log(list))
+  .catch(err => console.log(err));
+```
