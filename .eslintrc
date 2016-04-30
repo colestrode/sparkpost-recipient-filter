@@ -22,8 +22,8 @@
     "ecmaVersion": 6
   },
   "rules": {
-    "strict": 0,
-    "camelcase": 2,
+    "strict": 2,
+    "camelcase": 0,
     "curly": [
       2,
       "all"

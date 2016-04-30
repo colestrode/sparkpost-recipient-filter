@@ -4,7 +4,7 @@
   "description": "Filters a SparkPost recipient list by recipient attributes",
   "main": "index.js",
   "scripts": {
-    "pre-test": "eslint index.js ./lib ./test --fix",
+    "pretest": "eslint ./ --fix",
     "test": "echo looks good yo"
   },
   "engines": {
