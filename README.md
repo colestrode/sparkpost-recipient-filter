@@ -33,7 +33,7 @@ recipientFilter.filter('myListId', {
 ## Filtering
 
 If multiple criteria are passed in the filter config, the match is performed using `AND` logic.
-So if you pass both tags and domains, only recipients with the given tags and at the given domain will be returned.
+So if you pass both tags and a domain, only recipients with the given tags and at the given domain will be returned.
 
 ### Matching Tags
 
