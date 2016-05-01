@@ -65,42 +65,42 @@ require('sparkpost-recipient-filter')(process.env.SPARKPOST_API_KEY)
   .catch(err => console.log(err));
 ```
 
-### Matching Metadata
+### Matching Metadata and Substitution Data
 
-Matches recipients who have the passed metadata. This is a strict subset match,
+Matches recipients who have the passed `metadata` and/or `substituition_data`. This is a strict subset match,
 so recipients must have all values that are passed in, but may have more.
 
+Array properties must have exactly the same elements in order to match.
 
-Example:
+
+Metadata example:
 
 ```js
-// will find users with a place value of "NYC" AND a borough value of "Brooklyn"
+// will find users with a location.city value of "NYC" AND a location.borough value of "Brooklyn"
 require('sparkpost-recipient-filter')(process.env.SPARKPOST_API_KEY)
   .filter('myListId', {
     metadata: {
-      place: 'NYC',
-      borough: 'Brooklyn'
+      location: {
+        city: 'NYC',
+        borough: 'Brooklyn'
+      }
     }
   })
   .then(list => console.log(list))
   .catch(err => console.log(err));
 ```
 
-### Matching Substitution Data
-
-Matches recipients who have the passed metadata. This is a strict subset match,
-so recipients must have all values that are passed in, but may have more.
-
-
-Example:
+Substitution data example:
 
 ```js
-// will find users with a place value of "NYC" AND a borough value of "Brooklyn"
+// will find users with a location.city value of "NYC" AND a locaiont.borough value of "Brooklyn"
 require('sparkpost-recipient-filter')(process.env.SPARKPOST_API_KEY)
   .filter('myListId', {
     substitution_data: {
-      place: 'NYC',
-      borough: 'Brooklyn'
+      location: {
+        city: 'NYC',
+        borough: 'Brooklyn'
+      }
     }
   })
   .then(list => console.log(list))
