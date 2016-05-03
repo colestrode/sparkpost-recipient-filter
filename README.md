@@ -1,4 +1,6 @@
 # sparkpost-recipient-filter
+[![Build Status](https://travis-ci.org/colestrode/sparkpost-recipient-filter.svg?branch=master)](https://travis-ci.org/colestrode/sparkpost-recipient-filter)
+[![Coverage Status](https://coveralls.io/repos/github/colestrode/sparkpost-recipient-filter/badge.svg?branch=master)](https://coveralls.io/github/colestrode/sparkpost-recipient-filter?branch=master)
 
 Filters a SparkPost recipient list by domains, tags, metadata and/or substitution data.
 
