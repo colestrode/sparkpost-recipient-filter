@@ -6,7 +6,7 @@
   "scripts": {
     "pretest": "eslint ./index.js ./lib ./test --fix",
     "test": "istanbul cover --report lcov --dir coverage/ _mocha ./test -- --colors --recursive",
-    "ci": "npm test && cat ./coverage/coverage.json | coveralls"
+    "ci": "npm test && cat ./coverage/lcov.info | coveralls"
   },
   "engines": {
     "npm": ">=2.0.0 <3.0.0",
