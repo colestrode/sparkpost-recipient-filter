@@ -34,4 +34,8 @@ describe('Index', function() {
     expect(recipientListsMock.init).to.have.been.calledWith(apiKey);
     expect(exported.filter).to.equal(filterMock.filter);
   });
+
+  it('should thow an error if no api key is passed', function() {
+    expect(lib).to.throw(Error);
+  });
 });
